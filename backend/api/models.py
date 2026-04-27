@@ -9,7 +9,7 @@ class DoctorProfile(models.Model):
     experience = models.CharField(max_length=100)
     consultation_fee = models.DecimalField(max_digits=10, decimal_places=2)
     rating = models.FloatField(default=0.0)
-    image = models.URLField(blank=True, null=True)
+    image = models.TextField(blank=True, null=True)  # Supports both URLs and base64
 
     def __str__(self):
         return self.name
