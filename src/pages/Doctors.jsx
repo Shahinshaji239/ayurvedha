@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Search, Filter, Star, Clock, MapPin, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = "${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/api";
 
 const Doctors = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -86,7 +86,7 @@ const Doctors = () => {
                 </div>
 
                 <div className="flex justify-between items-center mt-md">
-                    <span style={{ fontSize: '20px', fontWeight: '700' }}>{d.consultation_fee > 0 ? `₹${d.consultation_fee}` : 'Consultation'}</span>
+                    <span style={{ fontSize: '20px', fontWeight: '700' }}>{d.consultation_fee > 0 ? `â‚¹${d.consultation_fee}` : 'Consultation'}</span>
                     <Link to={`/booking/${d.id}`} className="btn-primary" style={{ padding: '8px 20px', fontSize: '14px', textDecoration: 'none' }}>Book Now</Link>
                 </div>
                 </motion.div>

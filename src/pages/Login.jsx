@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Mail, Lock, User, ArrowRight, Globe, Eye, EyeOff, Calendar, Users as GenderIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = "${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/api";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -165,7 +165,7 @@ const Login = () => {
                             <label style={{ fontWeight: '700', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Password</label>
                             <div style={{ position: 'relative' }}>
                                 <Lock size={18} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--primary)' }} />
-                                <input type={showPassword ? "text" : "password"} placeholder="••••••••" style={{ padding: '18px 48px', borderRadius: '14px', border: '1px solid var(--outline-variant)', background: 'var(--surface)', width: '100%', fontSize: '16px' }} value={formData.password} onChange={(e) => setFormData({...formData, password: e.target.value})} required />
+                                <input type={showPassword ? "text" : "password"} placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" style={{ padding: '18px 48px', borderRadius: '14px', border: '1px solid var(--outline-variant)', background: 'var(--surface)', width: '100%', fontSize: '16px' }} value={formData.password} onChange={(e) => setFormData({...formData, password: e.target.value})} required />
                                 <div onClick={() => setShowPassword(!showPassword)} style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', color: 'var(--on-surface-variant)' }}>
                                     {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                                 </div>

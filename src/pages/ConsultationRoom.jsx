@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { PhoneOff, Send, Shield, X, Maximize2, Minimize2, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// ─── JaaS Configuration ───────────────────────────────────────────────────────
+// â”€â”€â”€ JaaS Configuration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const JAAS_APP_ID = 'vpaas-magic-cookie-f62a2e094e674e9d84405cd6fb8ca1d4';
 const JAAS_SCRIPT_URL = `https://8x8.vc/${JAAS_APP_ID}/external_api.js`;
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = "${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/api";
 
 const ConsultationRoom = () => {
   const { id } = useParams();
@@ -30,7 +30,7 @@ const ConsultationRoom = () => {
 
   const nowTime = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-  // ─── WebSocket Chat ─────────────────────────────────────────────────────────
+  // â”€â”€â”€ WebSocket Chat â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
     const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
     const socket = new WebSocket(`${protocol}://${window.location.hostname}:8000/ws/chat/${id}/`);
@@ -55,7 +55,7 @@ const ConsultationRoom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // ─── JaaS Video (8x8.vc) ─────────────────────────────────────────
+  // â”€â”€â”€ JaaS Video (8x8.vc) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
     // Step 1: Fetch a fresh JWT from the backend
     const params = new URLSearchParams({
@@ -154,7 +154,7 @@ const ConsultationRoom = () => {
     api.on('readyToClose', () => handleLeave());
   };
 
-  // ─── Leave Room ─────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Leave Room â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const handleLeave = () => {
     if (jitsiApiRef.current) {
       jitsiApiRef.current.dispose();
@@ -164,7 +164,7 @@ const ConsultationRoom = () => {
     navigate(role === 'doctor' ? '/doctor/dashboard' : '/dashboard');
   };
 
-  // ─── Send Message ────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Send Message â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const sendMessage = (e) => {
     e.preventDefault();
     if (!newMessage.trim() || !socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) return;
@@ -175,7 +175,7 @@ const ConsultationRoom = () => {
   return (
     <div style={{ display: 'flex', height: '100vh', backgroundColor: '#0d1117', overflow: 'hidden', fontFamily: 'Inter, sans-serif' }}>
 
-      {/* ─── VIDEO PANEL ─── */}
+      {/* â”€â”€â”€ VIDEO PANEL â”€â”€â”€ */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', position: 'relative', minWidth: 0 }}>
 
         {/* Top bar overlay */}
@@ -191,7 +191,7 @@ const ConsultationRoom = () => {
             </div>
             <div>
               <p style={{ color: 'white', fontWeight: '800', fontSize: '14px', margin: 0 }}>AyurSana Secure Consultation</p>
-              <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px', margin: 0 }}>Room #{id} · Powered by 8x8 JaaS · E2E Encrypted</p>
+              <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px', margin: 0 }}>Room #{id} Â· Powered by 8x8 JaaS Â· E2E Encrypted</p>
             </div>
           </div>
 
@@ -228,10 +228,10 @@ const ConsultationRoom = () => {
                 animation: 'spin 0.9s linear infinite'
               }} />
               <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '15px', fontWeight: '600' }}>
-                Connecting to secure video session…
+                Connecting to secure video sessionâ€¦
               </p>
               <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '12px' }}>
-                Powered by 8x8 JaaS · No time limits
+                Powered by 8x8 JaaS Â· No time limits
               </p>
               <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
             </div>
@@ -239,7 +239,7 @@ const ConsultationRoom = () => {
         </div>
       </div>
 
-      {/* ─── CHAT SIDEBAR ─── */}
+      {/* â”€â”€â”€ CHAT SIDEBAR â”€â”€â”€ */}
       <AnimatePresence>
         {!isChatCollapsed && (
           <motion.div
@@ -257,7 +257,7 @@ const ConsultationRoom = () => {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '4px' }}>
                   <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: connected ? '#22c55e' : '#ef4444', boxShadow: connected ? '0 0 6px #22c55e' : 'none' }} />
                   <span style={{ fontSize: '11px', color: connected ? '#22c55e' : '#ef4444', fontWeight: '700' }}>
-                    {connected ? 'Live & Encrypted' : 'Reconnecting…'}
+                    {connected ? 'Live & Encrypted' : 'Reconnectingâ€¦'}
                   </span>
                 </div>
               </div>
@@ -270,7 +270,7 @@ const ConsultationRoom = () => {
             <div style={{ flex: 1, overflowY: 'auto', padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {messages.length === 0 && connected && (
                 <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.2)', fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: '40px' }}>
-                  — Session started —
+                  â€” Session started â€”
                 </p>
               )}
               <AnimatePresence initial={false}>
@@ -292,7 +292,7 @@ const ConsultationRoom = () => {
                       {msg.text}
                     </div>
                     <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.28)', marginTop: '4px', textAlign: msg.sender === role ? 'right' : 'left' }}>
-                      {msg.sender === role ? 'You' : msg.sender === 'doctor' ? '🩺 Doctor' : '🧑 Patient'} · {msg.time}
+                      {msg.sender === role ? 'You' : msg.sender === 'doctor' ? 'ðŸ©º Doctor' : 'ðŸ§‘ Patient'} Â· {msg.time}
                     </p>
                   </motion.div>
                 ))}
@@ -308,7 +308,7 @@ const ConsultationRoom = () => {
                   value={newMessage}
                   onChange={e => setNewMessage(e.target.value)}
                   disabled={!connected}
-                  placeholder={connected ? 'Type a message…' : 'Connecting…'}
+                  placeholder={connected ? 'Type a messageâ€¦' : 'Connectingâ€¦'}
                   style={{ flex: 1, background: 'none', border: 'none', outline: 'none', color: 'white', fontSize: '13px' }}
                 />
                 <button

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Calendar, User, FileEdit, Video, CheckCircle2, DollarSign, Home, Users, FileText, Apple, LogOut, Plus, Search, MessageCircle, Clock, X, Info, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,7 +6,7 @@ import ChatPanel from '../components/ChatPanel';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = "${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/api";
 
 // --- SUB-COMPONENTS ---
 
@@ -151,7 +151,7 @@ const DoctorOverview = ({ data, stats, setActiveTab, onAddDiet, onPrescribe }) =
                                 </div>
                                 <div>
                                     <h4 style={{ fontSize: '20px', fontWeight: '800' }}>{c.patient_name}</h4>
-                                    <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)', marginTop: '4px' }}>{c.time} • {c.type} • {c.reason}</p>
+                                    <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)', marginTop: '4px' }}>{c.time} â€¢ {c.type} â€¢ {c.reason}</p>
                                 </div>
                             </div>
                             <div className="flex gap-md">
@@ -296,9 +296,9 @@ const AppointmentsView = ({ appointments, onUpdateStatus, onPrescribe, onAddDiet
                                     </span>
                                 </div>
                                 <div className="grid grid-cols-2 gap-x-xl gap-y-xs mt-sm">
-                                    <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)' }}><Clock size={14} style={{ inlineSize: '16px', verticalAlign: 'middle', marginRight: '6px' }} /> {app.date} • {app.time}</p>
+                                    <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)' }}><Clock size={14} style={{ inlineSize: '16px', verticalAlign: 'middle', marginRight: '6px' }} /> {app.date} â€¢ {app.time}</p>
                                     <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)' }}><Info size={14} style={{ inlineSize: '16px', verticalAlign: 'middle', marginRight: '6px' }} /> {app.type} Consultation</p>
-                                    <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)' }}><Users size={14} style={{ inlineSize: '16px', verticalAlign: 'middle', marginRight: '6px' }} /> {app.patient_age} yrs • {app.patient_gender}</p>
+                                    <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)' }}><Users size={14} style={{ inlineSize: '16px', verticalAlign: 'middle', marginRight: '6px' }} /> {app.patient_age} yrs â€¢ {app.patient_gender}</p>
                                     <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)' }}><Search size={14} style={{ inlineSize: '16px', verticalAlign: 'middle', marginRight: '6px' }} /> {app.reason}</p>
                                 </div>
                             </div>
@@ -371,7 +371,7 @@ const PrescriptionsView = ({ prescriptions }) => {
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
                             {p.medicines.map((m, j) => (
                                 <div key={j} style={{ padding: '10px 16px', backgroundColor: 'white', borderRadius: '12px', border: '1px solid #e6e2d6', fontSize: '14px' }}>
-                                    <span style={{ fontWeight: '800', color: '#1a1a1a' }}>{m.name}</span> <span style={{ color: '#666' }}>• {m.dosage} ({m.duration} days)</span>
+                                    <span style={{ fontWeight: '800', color: '#1a1a1a' }}>{m.name}</span> <span style={{ color: '#666' }}>â€¢ {m.dosage} ({m.duration} days)</span>
                                 </div>
                             ))}
                         </div>
@@ -482,8 +482,8 @@ const PatientsView = ({ doctorEmail }) => {
                                     <div>
                                         <h3 style={{ fontSize: '22px', fontWeight: '800' }}>{patient.name}</h3>
                                         <p style={{ color: 'var(--on-surface-variant)', fontSize: '14px', marginTop: '4px' }}>
-                                            {patient.gender && <span>{patient.gender} • </span>}
-                                            {patient.age && <span>{patient.age} yrs • </span>}
+                                            {patient.gender && <span>{patient.gender} â€¢ </span>}
+                                            {patient.age && <span>{patient.age} yrs â€¢ </span>}
                                             {patient.email}
                                         </p>
                                         <div className="flex gap-sm" style={{ marginTop: '10px', flexWrap: 'wrap' }}>
@@ -533,7 +533,7 @@ const PatientsView = ({ doctorEmail }) => {
                                                         <div key={idx} style={{ padding: '16px 20px', backgroundColor: 'var(--surface)', border: '1px solid var(--outline-variant)', borderRadius: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                                             <div>
                                                                 <p style={{ fontWeight: '700', fontSize: '15px' }}>{app.date}</p>
-                                                                <p style={{ color: 'var(--on-surface-variant)', fontSize: '13px', marginTop: '3px' }}>{app.time} • {app.type}</p>
+                                                                <p style={{ color: 'var(--on-surface-variant)', fontSize: '13px', marginTop: '3px' }}>{app.time} â€¢ {app.type}</p>
                                                             </div>
                                                             <span style={{ padding: '4px 12px', borderRadius: '8px', fontSize: '11px', fontWeight: '800', backgroundColor: sc.bg, color: sc.color }}>
                                                                 {app.status}
@@ -653,7 +653,7 @@ const DietPlansView = ({ doctorEmail, onAddDiet, patientsList }) => {
                                     <option key={p.id} value={p.id}>{p.patient_name}</option>
                                 ))}
                             </select>
-                            <span style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'white', fontSize: '12px' }}>▼</span>
+                            <span style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'white', fontSize: '12px' }}>â–¼</span>
                         </div>
                     )}
                 </div>
@@ -692,7 +692,7 @@ const DietPlansView = ({ doctorEmail, onAddDiet, patientsList }) => {
                                             </span>
                                         </div>
                                         <p style={{ color: 'var(--on-surface-variant)', fontSize: '15px', marginTop: '4px' }}>
-                                            Patient: <strong>{plan.patient_name}</strong> &nbsp;•&nbsp; {plan.duration_days} days &nbsp;•&nbsp; Created {plan.created_at}
+                                            Patient: <strong>{plan.patient_name}</strong> &nbsp;â€¢&nbsp; {plan.duration_days} days &nbsp;â€¢&nbsp; Created {plan.created_at}
                                         </p>
                                     </div>
                                 </div>
@@ -753,15 +753,15 @@ const DietPlansView = ({ doctorEmail, onAddDiet, patientsList }) => {
                                                         <span style={{ fontWeight: '800', color: 'var(--primary)', fontSize: '14px' }}>Day {day.day_number}</span>
                                                         <div>
                                                             <p style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--on-surface-variant)', marginBottom: '4px' }}>Morning</p>
-                                                            <p style={{ fontSize: '13px' }}>{day.morning_meal || '—'}</p>
+                                                            <p style={{ fontSize: '13px' }}>{day.morning_meal || 'â€”'}</p>
                                                         </div>
                                                         <div>
                                                             <p style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--on-surface-variant)', marginBottom: '4px' }}>Afternoon</p>
-                                                            <p style={{ fontSize: '13px' }}>{day.afternoon_meal || '—'}</p>
+                                                            <p style={{ fontSize: '13px' }}>{day.afternoon_meal || 'â€”'}</p>
                                                         </div>
                                                         <div>
                                                             <p style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--on-surface-variant)', marginBottom: '4px' }}>Evening</p>
-                                                            <p style={{ fontSize: '13px' }}>{day.evening_meal || '—'}</p>
+                                                            <p style={{ fontSize: '13px' }}>{day.evening_meal || 'â€”'}</p>
                                                         </div>
                                                     </div>
                                                 ))}
@@ -779,7 +779,7 @@ const DietPlansView = ({ doctorEmail, onAddDiet, patientsList }) => {
             {deletingPlanId && (
                 <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}>
                     <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} style={{ backgroundColor: 'var(--surface)', borderRadius: '24px', padding: '48px', maxWidth: '440px', width: '100%', textAlign: 'center' }}>
-                        <div style={{ fontSize: '48px', marginBottom: '16px' }}>🗑️</div>
+                        <div style={{ fontSize: '48px', marginBottom: '16px' }}>ðŸ—‘ï¸</div>
                         <h3 style={{ fontSize: '24px', fontWeight: '800', marginBottom: '12px' }}>Delete Diet Plan?</h3>
                         <p style={{ color: 'var(--on-surface-variant)', marginBottom: '32px', lineHeight: '1.6' }}>This action is permanent. The patient will lose access to this diet plan immediately.</p>
                         <div className="flex gap-md justify-center">
@@ -892,7 +892,7 @@ const DietPlansView = ({ doctorEmail, onAddDiet, patientsList }) => {
     );
 };
 
-// ─── Manage Slots View ────────────────────────────────────────────────────────
+// â”€â”€â”€ Manage Slots View â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const DoctorSlotsView = ({ doctorEmail }) => {
     const [slots, setSlots] = useState([]);
     const [date, setDate] = useState('');
@@ -995,7 +995,7 @@ const DoctorSlotsView = ({ doctorEmail }) => {
     );
 };
 
-// ─── Doctor Profile Edit View ─────────────────────────────────────────────────
+// â”€â”€â”€ Doctor Profile Edit View â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const DoctorProfileView = () => {
     const email = localStorage.getItem('userEmail');
     const [profile, setProfile] = useState(null);
@@ -1095,8 +1095,8 @@ const DoctorProfileView = () => {
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '20px', marginTop: '32px' }}>
                             {[
                                 { label: 'Experience', value: profile.experience },
-                                { label: 'Rating', value: `⭐ ${profile.rating}` },
-                                { label: 'Consultation Fee', value: `₹${profile.consultation_fee}`, highlight: true },
+                                { label: 'Rating', value: `â­ ${profile.rating}` },
+                                { label: 'Consultation Fee', value: `â‚¹${profile.consultation_fee}`, highlight: true },
                             ].map(({ label, value, highlight }) => (
                                 <div key={label} style={{ padding: '20px', borderRadius: '16px', background: highlight ? 'var(--primary-container)' : 'var(--surface-high)', textAlign: 'center' }}>
                                     <p style={{ fontSize: '22px', fontWeight: '900', color: highlight ? 'var(--primary)' : 'var(--on-surface)' }}>{value}</p>
@@ -1120,10 +1120,10 @@ const DoctorProfileView = () => {
                         </div>
                         <div>
                             <label style={{ ...labelStyle, cursor: 'pointer', padding: '10px 20px', borderRadius: '12px', background: 'var(--surface-high)', border: '1px solid var(--outline-variant)', display: 'inline-block' }}>
-                                📷 Change Photo
+                                ðŸ“· Change Photo
                                 <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
                             </label>
-                            <p style={{ fontSize: '12px', color: 'var(--on-surface-variant)', marginTop: '6px' }}>JPG, PNG — max 2MB</p>
+                            <p style={{ fontSize: '12px', color: 'var(--on-surface-variant)', marginTop: '6px' }}>JPG, PNG â€” max 2MB</p>
                         </div>
                     </div>
 
@@ -1133,7 +1133,7 @@ const DoctorProfileView = () => {
                             { label: 'Full Name', field: 'name', type: 'text' },
                             { label: 'Specialization', field: 'specialization', type: 'text' },
                             { label: 'Years of Experience', field: 'experience', type: 'text', placeholder: 'e.g. 8 years' },
-                            { label: '💰 Consultation Fee (₹)', field: 'consultation_fee', type: 'number', min: '0', step: '50', highlight: true },
+                            { label: 'ðŸ’° Consultation Fee (â‚¹)', field: 'consultation_fee', type: 'number', min: '0', step: '50', highlight: true },
                         ].map(({ label, field, type, placeholder, min, step, highlight }) => (
                             <div key={field}>
                                 <label style={labelStyle}>{label}</label>
@@ -1161,7 +1161,7 @@ const DoctorProfileView = () => {
                         </button>
                         <button type="submit" disabled={saving}
                             style={{ flex: 2, padding: '16px', borderRadius: '14px', background: 'var(--primary)', border: 'none', color: 'var(--on-primary)', fontWeight: '800', cursor: 'pointer', fontSize: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                            {saving ? '⏳ Saving...' : '✅ Save Changes'}
+                            {saving ? 'â³ Saving...' : 'âœ… Save Changes'}
                         </button>
                     </div>
                 </motion.form>
@@ -1184,7 +1184,7 @@ const DoctorDashboard = () => {
         const email = localStorage.getItem('userEmail');
         const role = localStorage.getItem('role');
 
-        // Guard: redirect immediately if not a doctor — prevents the "Access Denied" flash on reload
+        // Guard: redirect immediately if not a doctor â€” prevents the "Access Denied" flash on reload
         if (!email || !role) { navigate('/login'); return; }
         if (role !== 'doctor') { navigate('/dashboard'); return; }
 
@@ -1262,14 +1262,14 @@ const DoctorDashboard = () => {
         { label: 'Today\'s Appointments', value: 0, icon: <Calendar size={20} />, id: 'appointments' },
         { label: 'Pending Consultations', value: 0, icon: <Clock size={20} />, id: 'appointments' },
         { label: 'Patients Treated', value: 0, icon: <Users size={20} />, id: 'patients' },
-        { label: 'Daily Earnings', value: '₹0', icon: <DollarSign size={20} />, id: 'earnings' },
+        { label: 'Daily Earnings', value: 'â‚¹0', icon: <DollarSign size={20} />, id: 'earnings' },
     ];
 
     const renderContent = () => {
         if (isLoading) return <div className="p-huge text-center">Loading your clinical hub...</div>;
         if (errorMessage || !dashboardData) return (
             <div style={{ textAlign: 'center', padding: '120px 40px' }}>
-                <div style={{ fontSize: '64px', marginBottom: '24px' }}>⚠️</div>
+                <div style={{ fontSize: '64px', marginBottom: '24px' }}>âš ï¸</div>
                 <h2 style={{ fontSize: '32px', color: 'var(--error)', marginBottom: '16px' }}>Access Denied</h2>
                 <p style={{ color: 'var(--on-surface-variant)', fontSize: '18px', marginBottom: '32px' }}>
                     {errorMessage || 'Could not load dashboard.'}<br/>
@@ -1303,14 +1303,14 @@ const DoctorDashboard = () => {
                     </div>
                     <ChatPanel
                         role="doctor"
-                        conversations={(dashboardData.appointments || []).filter(a => a.status === 'SCHEDULED').map(a => ({ id: String(a.id), label: a.patient_name, sublabel: `${a.type} • ${a.date}` }))}
+                        conversations={(dashboardData.appointments || []).filter(a => a.status === 'SCHEDULED').map(a => ({ id: String(a.id), label: a.patient_name, sublabel: `${a.type} â€¢ ${a.date}` }))}
                         emptyMessage="No confirmed appointments yet. Confirm a patient booking to start chatting."
                     />
                 </div>
             );
             case 'slots': return <DoctorSlotsView doctorEmail={localStorage.getItem('userEmail')} />;
             case 'profile': return <DoctorProfileView />;
-            case 'earnings': return <div className="flex flex-col gap-lg"><h2 style={{ fontSize: '32px', fontWeight: '800' }}>Finances</h2><p style={{ color: 'var(--on-surface-variant)', fontSize: '18px' }}>Current daily earnings: ₹{dashboardData?.stats?.daily_earnings ?? 0}</p></div>;
+            case 'earnings': return <div className="flex flex-col gap-lg"><h2 style={{ fontSize: '32px', fontWeight: '800' }}>Finances</h2><p style={{ color: 'var(--on-surface-variant)', fontSize: '18px' }}>Current daily earnings: â‚¹{dashboardData?.stats?.daily_earnings ?? 0}</p></div>;
             default: return <DoctorOverview data={dashboardData} stats={stats} setActiveTab={setActiveTab} onAddDiet={setSelectedPatient} onPrescribe={setPrescribePatient} />;
         }
     };

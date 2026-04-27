@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Calendar as CalendarIcon, Clock, Video, Home as ClinicIcon, User, Phone, FileText, CheckCircle, CreditCard, Edit2, Shield, Loader } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = "${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/api";
 
 // Dynamically load Razorpay checkout script
 const loadRazorpay = () => new Promise((resolve) => {
@@ -190,7 +190,7 @@ const Booking = () => {
       <div className="section-padding" style={{ minHeight: '100vh' }}>
         <div className="container" style={{ maxWidth: '760px' }}>
 
-          {/* ─── Progress Stepper ─── */}
+          {/* â”€â”€â”€ Progress Stepper â”€â”€â”€ */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', position: 'relative', marginBottom: '56px' }}>
             <div style={{ position: 'absolute', top: '20px', left: '10%', right: '10%', height: '2px', background: 'var(--surface-high)', zIndex: 0 }} />
             <div style={{
@@ -217,7 +217,7 @@ const Booking = () => {
             ))}
           </div>
 
-          {/* ─── Card ─── */}
+          {/* â”€â”€â”€ Card â”€â”€â”€ */}
           <div className="card" style={{ padding: '48px', borderRadius: '28px' }}>
             <AnimatePresence mode="wait">
 
@@ -259,7 +259,7 @@ const Booking = () => {
                   </div>
                   <button className="btn-primary" style={{ padding: '18px', fontSize: '16px', borderRadius: '14px', marginTop: '8px' }}
                     onClick={handleNext} disabled={!bookingData.date || !bookingData.time}>
-                    Continue →
+                    Continue â†’
                   </button>
                 </motion.div>
               )}
@@ -291,8 +291,8 @@ const Booking = () => {
                     ))}
                   </div>
                   <div style={{ display: 'flex', gap: '12px' }}>
-                    <button className="btn-secondary" style={{ flex: 1, padding: '18px', borderRadius: '14px' }} onClick={handleBack}>← Back</button>
-                    <button className="btn-primary" style={{ flex: 2, padding: '18px', borderRadius: '14px' }} onClick={handleNext}>Continue →</button>
+                    <button className="btn-secondary" style={{ flex: 1, padding: '18px', borderRadius: '14px' }} onClick={handleBack}>â† Back</button>
+                    <button className="btn-primary" style={{ flex: 2, padding: '18px', borderRadius: '14px' }} onClick={handleNext}>Continue â†’</button>
                   </div>
                 </motion.div>
               )}
@@ -331,10 +331,10 @@ const Booking = () => {
                     </div>
                   </div>
                   <div style={{ display: 'flex', gap: '12px' }}>
-                    <button className="btn-secondary" style={{ flex: 1, padding: '18px', borderRadius: '14px' }} onClick={handleBack}>← Back</button>
+                    <button className="btn-secondary" style={{ flex: 1, padding: '18px', borderRadius: '14px' }} onClick={handleBack}>â† Back</button>
                     <button className="btn-primary" style={{ flex: 2, padding: '18px', borderRadius: '14px' }}
                       onClick={handleNext} disabled={!bookingData.name || !bookingData.phone}>
-                      Review Booking →
+                      Review Booking â†’
                     </button>
                   </div>
                 </motion.div>
@@ -363,7 +363,7 @@ const Booking = () => {
                         <p style={{ fontSize: '13px', color: 'var(--primary)', fontWeight: '600', marginTop: '2px' }}>{doctor.specialization}</p>
                       </div>
                       <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
-                        <p style={{ fontSize: '24px', fontWeight: '900', color: 'var(--primary)' }}>₹{doctor.consultation_fee}</p>
+                        <p style={{ fontSize: '24px', fontWeight: '900', color: 'var(--primary)' }}>â‚¹{doctor.consultation_fee}</p>
                         <p style={{ fontSize: '12px', color: 'var(--on-surface-variant)' }}>Consultation fee</p>
                       </div>
                     </div>
@@ -374,7 +374,7 @@ const Booking = () => {
                     <DetailRow icon={<CalendarIcon />} label="Date" value={formatDate(bookingData.date)} />
                     <DetailRow icon={<Clock />} label="Time" value={bookingData.time} />
                     <DetailRow icon={bookingData.type === 'online' ? <Video /> : <ClinicIcon />} label="Type"
-                      value={bookingData.type === 'online' ? '🎥 Online Video Consultation' : '🏥 In-Clinic Visit'} />
+                      value={bookingData.type === 'online' ? 'ðŸŽ¥ Online Video Consultation' : 'ðŸ¥ In-Clinic Visit'} />
                     <DetailRow icon={<User />} label="Patient Name" value={bookingData.name} />
                     <DetailRow icon={<Phone />} label="Phone" value={bookingData.phone} />
                     {bookingData.reason && <DetailRow icon={<FileText />} label="Reason" value={bookingData.reason} />}
@@ -387,10 +387,10 @@ const Booking = () => {
                   </div>
 
                   <div style={{ display: 'flex', gap: '12px' }}>
-                    <button className="btn-secondary" style={{ flex: 1, padding: '18px', borderRadius: '14px' }} onClick={handleBack}>← Back</button>
+                    <button className="btn-secondary" style={{ flex: 1, padding: '18px', borderRadius: '14px' }} onClick={handleBack}>â† Back</button>
                     <button onClick={handlePayment} disabled={isPayingLoading}
                       style={{ flex: 2, padding: '18px', borderRadius: '14px', background: 'linear-gradient(135deg, #2d6a4f, #40916c)', color: 'white', border: 'none', cursor: 'pointer', fontWeight: '800', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-                      {isPayingLoading ? <><Loader size={18} style={{ animation: 'spin 1s linear infinite' }} /> Processing...</> : <><CreditCard size={18} /> Pay ₹{doctor?.consultation_fee} Now</>}
+                      {isPayingLoading ? <><Loader size={18} style={{ animation: 'spin 1s linear infinite' }} /> Processing...</> : <><CreditCard size={18} /> Pay â‚¹{doctor?.consultation_fee} Now</>}
                     </button>
                   </div>
                   <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
@@ -415,10 +415,10 @@ const Booking = () => {
                     <DetailRow icon={<CalendarIcon />} label="Date" value={formatDate(bookingData.date)} />
                     <DetailRow icon={<Clock />} label="Time" value={bookingData.time} />
                     <DetailRow icon={bookingData.type === 'online' ? <Video /> : <ClinicIcon />} label="Type"
-                      value={bookingData.type === 'online' ? '🎥 Online Video' : '🏥 In-Clinic'} />
+                      value={bookingData.type === 'online' ? 'ðŸŽ¥ Online Video' : 'ðŸ¥ In-Clinic'} />
                   </div>
                   <button className="btn-primary" style={{ padding: '18px 48px', borderRadius: '14px', fontSize: '16px' }} onClick={() => navigate('/dashboard')}>
-                    Go to My Dashboard →
+                    Go to My Dashboard â†’
                   </button>
                 </motion.div>
               )}

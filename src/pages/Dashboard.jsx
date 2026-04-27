@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { Calendar, Clock, FileText, Activity, MessageCircle, ChevronRight, Download, Plus, MapPin, Video, User, Home, Users, Apple, LogOut, Menu, X, Search, Leaf, Camera } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,7 +6,7 @@ import ChatPanel from '../components/ChatPanel';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = "${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/api";
 
 // --- SUB-VIEWS ---
 
@@ -142,7 +142,7 @@ const AppointmentsView = ({ appointments = [], setActiveTab }) => (
             <div key={i} className="flex justify-between items-center" style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius-md)', padding: '24px' }}>
                 <div>
                 <h4 style={{ fontSize: '20px', fontWeight: '700' }}>{a.doctor}</h4>
-                <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)', marginTop: '4px' }}>{a.date} • {a.time} • {a.type} Call</p>
+                <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)', marginTop: '4px' }}>{a.date} â€¢ {a.time} â€¢ {a.type} Call</p>
                 </div>
                 <div className="flex items-center" style={{ gap: '16px' }}>
                 <Link to={`/room/${a.id}`} className="btn-primary" style={{ padding: '10px 24px', textDecoration: 'none', borderRadius: '12px', fontSize: '14px', fontWeight: '700' }}>Join Call</Link>
@@ -289,7 +289,7 @@ const DoctorsView = () => {
                             </div>
                             <div className="flex justify-between items-center mt-md pt-md" style={{ borderTop: '1px solid var(--outline-variant)' }}>
                                 <span style={{ fontWeight: '800', color: 'var(--primary)', fontSize: '18px' }}>
-                                    {d.consultation_fee > 0 ? `₹${d.consultation_fee}` : 'Consultation'}
+                                    {d.consultation_fee > 0 ? `â‚¹${d.consultation_fee}` : 'Consultation'}
                                 </span>
                                 <Link to={`/booking/${d.id}`} className="btn-primary" style={{ padding: '8px 20px', fontSize: '14px', textDecoration: 'none' }}>Book Now</Link>
                             </div>
@@ -372,7 +372,7 @@ const ChatView = ({ appointments = [] }) => {
     const conversations = scheduled.map(a => ({
         id: String(a.id),
         label: `Dr. ${a.doctor}`,
-        sublabel: `${a.type || 'ONLINE'} • ${a.time || a.date}`
+        sublabel: `${a.type || 'ONLINE'} â€¢ ${a.time || a.date}`
     }));
 
     return (
@@ -555,7 +555,7 @@ const ProfileView = () => {
                                 <option value="Female">Female</option>
                                 <option value="Other">Other</option>
                             </select>
-                            {isEditing && <div style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', opacity: 0.5 }}>▼</div>}
+                            {isEditing && <div style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', opacity: 0.5 }}>â–¼</div>}
                         </div>
                     </div>
                     
