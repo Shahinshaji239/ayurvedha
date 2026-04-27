@@ -248,3 +248,4 @@ const ChatPanel = ({ conversations = [], role = 'patient', emptyMessage = 'No ac
 };
 
 export default ChatPanel;
+

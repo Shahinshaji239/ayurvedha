@@ -6,8 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // â”€â”€â”€ JaaS Configuration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const JAAS_APP_ID = 'vpaas-magic-cookie-f62a2e094e674e9d84405cd6fb8ca1d4';
 const JAAS_SCRIPT_URL = `https://8x8.vc/${JAAS_APP_ID}/external_api.js`;
-const API_URL = "${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/api";
-
+const API_URL = 'https://doctor-ayurvedha-api.onrender.com/api';
 const ConsultationRoom = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -33,8 +32,7 @@ const ConsultationRoom = () => {
   // â”€â”€â”€ WebSocket Chat â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
     
-    const wsHost = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/^http/, 'ws').replace(/\/$/, '') : `://:8000`;
-    const socket = new WebSocket(`/ws/chat//`);
+    const socket = new WebSocket(`wss://doctor-ayurvedha-api.onrender.com/ws/chat/${id}/`);
     socketRef.current = socket;
 
     socket.onopen = () => { setConnected(true); setMessages([]); };
@@ -333,3 +331,6 @@ const ConsultationRoom = () => {
 };
 
 export default ConsultationRoom;
+
+
+

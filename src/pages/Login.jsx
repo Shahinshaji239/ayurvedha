@@ -3,8 +3,7 @@ import { Mail, Lock, User, ArrowRight, Globe, Eye, EyeOff, Calendar, Users as Ge
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = "${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/api";
-
+const API_URL = 'https://doctor-ayurvedha-api.onrender.com/api';
 const Login = () => {
     const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(true);
@@ -209,3 +208,5 @@ const Login = () => {
 };
 
 export default Login;
+
+

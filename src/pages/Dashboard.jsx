@@ -6,8 +6,7 @@ import ChatPanel from '../components/ChatPanel';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-const API_URL = "${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/api";
-
+const API_URL = 'https://doctor-ayurvedha-api.onrender.com/api';
 // --- SUB-VIEWS ---
 
 const DashboardOverview = ({ setActiveTab, data }) => {
@@ -728,3 +727,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+

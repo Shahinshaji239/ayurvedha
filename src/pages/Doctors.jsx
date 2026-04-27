@@ -3,8 +3,7 @@ import { Search, Filter, Star, Clock, MapPin, ChevronRight } from 'lucide-react'
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-const API_URL = "${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/api";
-
+const API_URL = 'https://doctor-ayurvedha-api.onrender.com/api';
 const Doctors = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [doctors, setDoctors] = useState([]);
@@ -104,3 +103,5 @@ const Doctors = () => {
 };
 
 export default Doctors;
+
+

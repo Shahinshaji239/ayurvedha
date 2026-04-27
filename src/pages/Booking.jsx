@@ -3,8 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Calendar as CalendarIcon, Clock, Video, Home as ClinicIcon, User, Phone, FileText, CheckCircle, CreditCard, Edit2, Shield, Loader } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const API_URL = "${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/api";
-
+const API_URL = 'https://doctor-ayurvedha-api.onrender.com/api';
 // Dynamically load Razorpay checkout script
 const loadRazorpay = () => new Promise((resolve) => {
   if (window.Razorpay) { resolve(true); return; }
@@ -432,3 +431,5 @@ const Booking = () => {
 };
 
 export default Booking;
+
+
