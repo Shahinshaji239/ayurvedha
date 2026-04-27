@@ -373,7 +373,7 @@ const Booking = () => {
                     <DetailRow icon={<CalendarIcon />} label="Date" value={formatDate(bookingData.date)} />
                     <DetailRow icon={<Clock />} label="Time" value={bookingData.time} />
                     <DetailRow icon={bookingData.type === 'online' ? <Video /> : <ClinicIcon />} label="Type"
-                      value={bookingData.type === 'online' ? 'ðŸŽ¥ Online Video Consultation' : 'ðŸ¥ In-Clinic Visit'} />
+                      value={bookingData.type === 'online' ? '🎥 Online Video Consultation' : 'ðŸ¥ In-Clinic Visit'} />
                     <DetailRow icon={<User />} label="Patient Name" value={bookingData.name} />
                     <DetailRow icon={<Phone />} label="Phone" value={bookingData.phone} />
                     {bookingData.reason && <DetailRow icon={<FileText />} label="Reason" value={bookingData.reason} />}
@@ -414,7 +414,7 @@ const Booking = () => {
                     <DetailRow icon={<CalendarIcon />} label="Date" value={formatDate(bookingData.date)} />
                     <DetailRow icon={<Clock />} label="Time" value={bookingData.time} />
                     <DetailRow icon={bookingData.type === 'online' ? <Video /> : <ClinicIcon />} label="Type"
-                      value={bookingData.type === 'online' ? 'ðŸŽ¥ Online Video' : 'ðŸ¥ In-Clinic'} />
+                      value={bookingData.type === 'online' ? '🎥 Online Video' : 'ðŸ¥ In-Clinic'} />
                   </div>
                   <button className="btn-primary" style={{ padding: '18px 48px', borderRadius: '14px', fontSize: '16px' }} onClick={() => navigate('/dashboard')}>
                     Go to My Dashboard â†’
