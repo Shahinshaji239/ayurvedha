@@ -1,0 +1,161 @@
+:root {
+  /* Colors - The Modern Sanctuary */
+  --background: #fcf9f4;
+  --surface: #fcf9f4;
+  --surface-low: #f6f3ee;
+  --surface-high: #ebe8e3;
+  --surface-highest: #e5e2dd;
+  --surface-lowest: #ffffff;
+  
+  --primary: #173124;
+  --primary-container: #2d4739;
+  --on-primary: #ffffff;
+  
+  --secondary: #506356;
+  --secondary-container: #d2e8d8;
+  
+  --tertiary: #3b280a;
+  --tertiary-container: #533e1e;
+  
+  --on-surface: #1c1c19;
+  --on-surface-variant: #424844;
+  
+  --outline: #727973;
+  --outline-variant: rgba(194, 200, 194, 0.15); /* 15% opacity as per Ghost Border rule */
+
+  /* Typography */
+  --font-serif: 'Noto Serif', serif;
+  --font-sans: 'Manrope', sans-serif;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-huge: 80px;
+  --spacing-giant: 120px;
+
+  /* Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+  --radius-full: 9999px;
+
+  /* Shadows - Ambient & Atmospheric */
+  --shadow-ambient: 0 24px 48px -12px rgba(28, 28, 25, 0.05); /* Tinted with on-surface */
+  --shadow-float: 0 40px 80px -20px rgba(28, 28, 25, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--on-surface);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: var(--font-sans);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Utilities */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.section-padding {
+  padding-top: var(--spacing-giant);
+  padding-bottom: var(--spacing-giant);
+}
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+
+.grid { display: grid; }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  padding: 12px 28px;
+  border-radius: var(--radius-xl);
+  font-weight: 600;
+  box-shadow: var(--shadow-ambient);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-container);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-float);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-container);
+  color: var(--primary);
+  padding: 12px 28px;
+  border-radius: var(--radius-xl);
+  font-weight: 600;
+}
+
+.btn-secondary:hover {
+  background-color: #c0d8c8;
+  transform: translateY(-2px);
+}
+
+/* Cards */
+.card {
+  background-color: var(--surface-low);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  background-color: var(--surface-highest);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-ambient);
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

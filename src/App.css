@@ -1,0 +1,13 @@
+/* App.css is mostly handled in index.css, leaving this as a place for component-specific overrides if needed */
+.hero-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--primary-container));
+  color: var(--on-primary);
+}
+
+.glass-nav {
+  background: rgba(252, 249, 244, 0.8);
+  backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
