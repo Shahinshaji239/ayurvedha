@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { Send, MessageCircle, Circle, Paperclip } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /**
- * ChatPanel — a fully self-contained real-time chat component.
+ * ChatPanel â€” a fully self-contained real-time chat component.
  *
  * Props:
  *   conversations : Array of { id, label, sublabel, status }
@@ -37,14 +37,15 @@ const ChatPanel = ({ conversations = [], role = 'patient', emptyMessage = 'No ac
 
         setConnected(false);
 
-        const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-        const url = `${protocol}://${window.location.hostname}:8000/ws/chat/${activeId}/`;
+        
+        const wsHost = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/^http/, 'ws').replace(/\/$/, '') : `://:8000`;
+        const url = `/ws/chat//`;
         const socket = new WebSocket(url);
         socketRef.current = socket;
 
         socket.onopen = () => {
             setConnected(true);
-            // Clear messages for this room — history will arrive via from_history frames
+            // Clear messages for this room â€” history will arrive via from_history frames
             setMessagesByRoom(prev => ({ ...prev, [activeId]: [] }));
         };
 
@@ -110,7 +111,7 @@ const ChatPanel = ({ conversations = [], role = 'patient', emptyMessage = 'No ac
     return (
         <div style={{ display: 'flex', height: '78vh', border: '1px solid var(--outline-variant)', borderRadius: '28px', overflow: 'hidden', backgroundColor: 'var(--surface-lowest)' }}>
 
-            {/* ─── LEFT SIDEBAR: Conversation List ─── */}
+            {/* â”€â”€â”€ LEFT SIDEBAR: Conversation List â”€â”€â”€ */}
             <div style={{ width: '280px', borderRight: '1px solid var(--outline-variant)', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--surface-low)', flexShrink: 0 }}>
                 <div style={{ padding: '24px 20px 16px', borderBottom: '1px solid var(--outline-variant)' }}>
                     <h3 style={{ fontSize: '16px', fontWeight: '800', color: 'var(--on-surface)' }}>Consultations</h3>
@@ -150,7 +151,7 @@ const ChatPanel = ({ conversations = [], role = 'patient', emptyMessage = 'No ac
                 </div>
             </div>
 
-            {/* ─── RIGHT: Chat Window ─── */}
+            {/* â”€â”€â”€ RIGHT: Chat Window â”€â”€â”€ */}
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
 
                 {/* Chat Header */}
@@ -188,7 +189,7 @@ const ChatPanel = ({ conversations = [], role = 'patient', emptyMessage = 'No ac
                             >
                                 {msg.sender === 'system' ? (
                                     <p style={{ textAlign: 'center', fontSize: '11px', color: 'var(--on-surface-variant)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.07em', padding: '4px 0' }}>
-                                        — {msg.text} —
+                                        â€” {msg.text} â€”
                                     </p>
                                 ) : (
                                     <>

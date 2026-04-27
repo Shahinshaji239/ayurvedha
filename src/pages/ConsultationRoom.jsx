@@ -32,8 +32,9 @@ const ConsultationRoom = () => {
 
   // â”€â”€â”€ WebSocket Chat â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
-    const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-    const socket = new WebSocket(`${protocol}://${window.location.hostname}:8000/ws/chat/${id}/`);
+    
+    const wsHost = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/^http/, 'ws').replace(/\/$/, '') : `://:8000`;
+    const socket = new WebSocket(`/ws/chat//`);
     socketRef.current = socket;
 
     socket.onopen = () => { setConnected(true); setMessages([]); };
