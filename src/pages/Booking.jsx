@@ -362,7 +362,7 @@ const Booking = () => {
                         <p style={{ fontSize: '13px', color: 'var(--primary)', fontWeight: '600', marginTop: '2px' }}>{doctor.specialization}</p>
                       </div>
                       <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
-                        <p style={{ fontSize: '24px', fontWeight: '900', color: 'var(--primary)' }}>â‚¹{doctor.consultation_fee}</p>
+                        <p style={{ fontSize: '24px', fontWeight: '900', color: 'var(--primary)' }}>₹{doctor.consultation_fee}</p>
                         <p style={{ fontSize: '12px', color: 'var(--on-surface-variant)' }}>Consultation fee</p>
                       </div>
                     </div>
@@ -389,7 +389,7 @@ const Booking = () => {
                     <button className="btn-secondary" style={{ flex: 1, padding: '18px', borderRadius: '14px' }} onClick={handleBack}>â† Back</button>
                     <button onClick={handlePayment} disabled={isPayingLoading}
                       style={{ flex: 2, padding: '18px', borderRadius: '14px', background: 'linear-gradient(135deg, #2d6a4f, #40916c)', color: 'white', border: 'none', cursor: 'pointer', fontWeight: '800', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-                      {isPayingLoading ? <><Loader size={18} style={{ animation: 'spin 1s linear infinite' }} /> Processing...</> : <><CreditCard size={18} /> Pay â‚¹{doctor?.consultation_fee} Now</>}
+                      {isPayingLoading ? <><Loader size={18} style={{ animation: 'spin 1s linear infinite' }} /> Processing...</> : <><CreditCard size={18} /> Pay ₹{doctor?.consultation_fee} Now</>}
                     </button>
                   </div>
                   <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>

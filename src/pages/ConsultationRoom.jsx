@@ -190,7 +190,7 @@ const ConsultationRoom = () => {
             </div>
             <div>
               <p style={{ color: 'white', fontWeight: '800', fontSize: '14px', margin: 0 }}>AyurSana Secure Consultation</p>
-              <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px', margin: 0 }}>Room #{id} Â· Powered by 8x8 JaaS Â· E2E Encrypted</p>
+              <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px', margin: 0 }}>Room #{id} · Powered by 8x8 JaaS · E2E Encrypted</p>
             </div>
           </div>
 
@@ -227,10 +227,10 @@ const ConsultationRoom = () => {
                 animation: 'spin 0.9s linear infinite'
               }} />
               <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '15px', fontWeight: '600' }}>
-                Connecting to secure video sessionâ€¦
+                Connecting to secure video session…
               </p>
               <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '12px' }}>
-                Powered by 8x8 JaaS Â· No time limits
+                Powered by 8x8 JaaS · No time limits
               </p>
               <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
             </div>
@@ -256,7 +256,7 @@ const ConsultationRoom = () => {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '4px' }}>
                   <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: connected ? '#22c55e' : '#ef4444', boxShadow: connected ? '0 0 6px #22c55e' : 'none' }} />
                   <span style={{ fontSize: '11px', color: connected ? '#22c55e' : '#ef4444', fontWeight: '700' }}>
-                    {connected ? 'Live & Encrypted' : 'Reconnectingâ€¦'}
+                    {connected ? 'Live & Encrypted' : 'Reconnecting…'}
                   </span>
                 </div>
               </div>
@@ -291,7 +291,7 @@ const ConsultationRoom = () => {
                       {msg.text}
                     </div>
                     <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.28)', marginTop: '4px', textAlign: msg.sender === role ? 'right' : 'left' }}>
-                      {msg.sender === role ? 'You' : msg.sender === 'doctor' ? 'ðŸ©º Doctor' : 'ðŸ§‘ Patient'} Â· {msg.time}
+                      {msg.sender === role ? 'You' : msg.sender === 'doctor' ? '🩺 Doctor' : 'ðŸ§‘ Patient'} · {msg.time}
                     </p>
                   </motion.div>
                 ))}
@@ -307,7 +307,7 @@ const ConsultationRoom = () => {
                   value={newMessage}
                   onChange={e => setNewMessage(e.target.value)}
                   disabled={!connected}
-                  placeholder={connected ? 'Type a messageâ€¦' : 'Connectingâ€¦'}
+                  placeholder={connected ? 'Type a message…' : 'Connecting…'}
                   style={{ flex: 1, background: 'none', border: 'none', outline: 'none', color: 'white', fontSize: '13px' }}
                 />
                 <button

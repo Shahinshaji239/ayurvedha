@@ -85,7 +85,7 @@ const Doctors = () => {
                 </div>
 
                 <div className="flex justify-between items-center mt-md">
-                    <span style={{ fontSize: '20px', fontWeight: '700' }}>{d.consultation_fee > 0 ? `â‚¹${d.consultation_fee}` : 'Consultation'}</span>
+                    <span style={{ fontSize: '20px', fontWeight: '700' }}>{d.consultation_fee > 0 ? `₹${d.consultation_fee}` : 'Consultation'}</span>
                     <Link to={`/booking/${d.id}`} className="btn-primary" style={{ padding: '8px 20px', fontSize: '14px', textDecoration: 'none' }}>Book Now</Link>
                 </div>
                 </motion.div>

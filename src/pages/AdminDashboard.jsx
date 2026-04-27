@@ -131,7 +131,7 @@ const AddDoctorForm = ({ setView, refreshDoctors }) => {
           <div className="flex flex-col gap-sm">
             <label style={{ fontWeight: '600', fontSize: '14px' }}>Login Password</label>
             <div style={{ position: 'relative' }}>
-                <input type={showPassword ? "text" : "password"} placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" style={{ padding: '16px', paddingRight: '45px', borderRadius: 'var(--radius-md)', border: '1px solid var(--outline-variant)', background: 'var(--surface)', width: '100%' }} required value={formData.password} onChange={(e) => setFormData({...formData, password: e.target.value})} />
+                <input type={showPassword ? "text" : "password"} placeholder="••••••••" style={{ padding: '16px', paddingRight: '45px', borderRadius: 'var(--radius-md)', border: '1px solid var(--outline-variant)', background: 'var(--surface)', width: '100%' }} required value={formData.password} onChange={(e) => setFormData({...formData, password: e.target.value})} />
                 <div onClick={() => setShowPassword(!showPassword)} style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', color: 'var(--on-surface-variant)' }}>
                     {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                 </div>

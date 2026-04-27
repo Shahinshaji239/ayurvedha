@@ -150,7 +150,7 @@ const DoctorOverview = ({ data, stats, setActiveTab, onAddDiet, onPrescribe }) =
                                 </div>
                                 <div>
                                     <h4 style={{ fontSize: '20px', fontWeight: '800' }}>{c.patient_name}</h4>
-                                    <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)', marginTop: '4px' }}>{c.time} â€¢ {c.type} â€¢ {c.reason}</p>
+                                    <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)', marginTop: '4px' }}>{c.time} • {c.type} • {c.reason}</p>
                                 </div>
                             </div>
                             <div className="flex gap-md">
@@ -295,9 +295,9 @@ const AppointmentsView = ({ appointments, onUpdateStatus, onPrescribe, onAddDiet
                                     </span>
                                 </div>
                                 <div className="grid grid-cols-2 gap-x-xl gap-y-xs mt-sm">
-                                    <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)' }}><Clock size={14} style={{ inlineSize: '16px', verticalAlign: 'middle', marginRight: '6px' }} /> {app.date} â€¢ {app.time}</p>
+                                    <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)' }}><Clock size={14} style={{ inlineSize: '16px', verticalAlign: 'middle', marginRight: '6px' }} /> {app.date} • {app.time}</p>
                                     <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)' }}><Info size={14} style={{ inlineSize: '16px', verticalAlign: 'middle', marginRight: '6px' }} /> {app.type} Consultation</p>
-                                    <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)' }}><Users size={14} style={{ inlineSize: '16px', verticalAlign: 'middle', marginRight: '6px' }} /> {app.patient_age} yrs â€¢ {app.patient_gender}</p>
+                                    <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)' }}><Users size={14} style={{ inlineSize: '16px', verticalAlign: 'middle', marginRight: '6px' }} /> {app.patient_age} yrs • {app.patient_gender}</p>
                                     <p style={{ fontSize: '15px', color: 'var(--on-surface-variant)' }}><Search size={14} style={{ inlineSize: '16px', verticalAlign: 'middle', marginRight: '6px' }} /> {app.reason}</p>
                                 </div>
                             </div>
@@ -370,7 +370,7 @@ const PrescriptionsView = ({ prescriptions }) => {
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
                             {p.medicines.map((m, j) => (
                                 <div key={j} style={{ padding: '10px 16px', backgroundColor: 'white', borderRadius: '12px', border: '1px solid #e6e2d6', fontSize: '14px' }}>
-                                    <span style={{ fontWeight: '800', color: '#1a1a1a' }}>{m.name}</span> <span style={{ color: '#666' }}>â€¢ {m.dosage} ({m.duration} days)</span>
+                                    <span style={{ fontWeight: '800', color: '#1a1a1a' }}>{m.name}</span> <span style={{ color: '#666' }}>• {m.dosage} ({m.duration} days)</span>
                                 </div>
                             ))}
                         </div>
@@ -481,8 +481,8 @@ const PatientsView = ({ doctorEmail }) => {
                                     <div>
                                         <h3 style={{ fontSize: '22px', fontWeight: '800' }}>{patient.name}</h3>
                                         <p style={{ color: 'var(--on-surface-variant)', fontSize: '14px', marginTop: '4px' }}>
-                                            {patient.gender && <span>{patient.gender} â€¢ </span>}
-                                            {patient.age && <span>{patient.age} yrs â€¢ </span>}
+                                            {patient.gender && <span>{patient.gender} • </span>}
+                                            {patient.age && <span>{patient.age} yrs • </span>}
                                             {patient.email}
                                         </p>
                                         <div className="flex gap-sm" style={{ marginTop: '10px', flexWrap: 'wrap' }}>
@@ -532,7 +532,7 @@ const PatientsView = ({ doctorEmail }) => {
                                                         <div key={idx} style={{ padding: '16px 20px', backgroundColor: 'var(--surface)', border: '1px solid var(--outline-variant)', borderRadius: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                                             <div>
                                                                 <p style={{ fontWeight: '700', fontSize: '15px' }}>{app.date}</p>
-                                                                <p style={{ color: 'var(--on-surface-variant)', fontSize: '13px', marginTop: '3px' }}>{app.time} â€¢ {app.type}</p>
+                                                                <p style={{ color: 'var(--on-surface-variant)', fontSize: '13px', marginTop: '3px' }}>{app.time} • {app.type}</p>
                                                             </div>
                                                             <span style={{ padding: '4px 12px', borderRadius: '8px', fontSize: '11px', fontWeight: '800', backgroundColor: sc.bg, color: sc.color }}>
                                                                 {app.status}
@@ -691,7 +691,7 @@ const DietPlansView = ({ doctorEmail, onAddDiet, patientsList }) => {
                                             </span>
                                         </div>
                                         <p style={{ color: 'var(--on-surface-variant)', fontSize: '15px', marginTop: '4px' }}>
-                                            Patient: <strong>{plan.patient_name}</strong> &nbsp;â€¢&nbsp; {plan.duration_days} days &nbsp;â€¢&nbsp; Created {plan.created_at}
+                                            Patient: <strong>{plan.patient_name}</strong> &nbsp;•&nbsp; {plan.duration_days} days &nbsp;•&nbsp; Created {plan.created_at}
                                         </p>
                                     </div>
                                 </div>
@@ -1095,7 +1095,7 @@ const DoctorProfileView = () => {
                             {[
                                 { label: 'Experience', value: profile.experience },
                                 { label: 'Rating', value: `â­ ${profile.rating}` },
-                                { label: 'Consultation Fee', value: `â‚¹${profile.consultation_fee}`, highlight: true },
+                                { label: 'Consultation Fee', value: `₹${profile.consultation_fee}`, highlight: true },
                             ].map(({ label, value, highlight }) => (
                                 <div key={label} style={{ padding: '20px', borderRadius: '16px', background: highlight ? 'var(--primary-container)' : 'var(--surface-high)', textAlign: 'center' }}>
                                     <p style={{ fontSize: '22px', fontWeight: '900', color: highlight ? 'var(--primary)' : 'var(--on-surface)' }}>{value}</p>
@@ -1132,7 +1132,7 @@ const DoctorProfileView = () => {
                             { label: 'Full Name', field: 'name', type: 'text' },
                             { label: 'Specialization', field: 'specialization', type: 'text' },
                             { label: 'Years of Experience', field: 'experience', type: 'text', placeholder: 'e.g. 8 years' },
-                            { label: 'ðŸ’° Consultation Fee (â‚¹)', field: 'consultation_fee', type: 'number', min: '0', step: '50', highlight: true },
+                            { label: 'ðŸ’° Consultation Fee (₹)', field: 'consultation_fee', type: 'number', min: '0', step: '50', highlight: true },
                         ].map(({ label, field, type, placeholder, min, step, highlight }) => (
                             <div key={field}>
                                 <label style={labelStyle}>{label}</label>
@@ -1261,7 +1261,7 @@ const DoctorDashboard = () => {
         { label: 'Today\'s Appointments', value: 0, icon: <Calendar size={20} />, id: 'appointments' },
         { label: 'Pending Consultations', value: 0, icon: <Clock size={20} />, id: 'appointments' },
         { label: 'Patients Treated', value: 0, icon: <Users size={20} />, id: 'patients' },
-        { label: 'Daily Earnings', value: 'â‚¹0', icon: <DollarSign size={20} />, id: 'earnings' },
+        { label: 'Daily Earnings', value: '₹0', icon: <DollarSign size={20} />, id: 'earnings' },
     ];
 
     const renderContent = () => {
@@ -1302,14 +1302,14 @@ const DoctorDashboard = () => {
                     </div>
                     <ChatPanel
                         role="doctor"
-                        conversations={(dashboardData.appointments || []).filter(a => a.status === 'SCHEDULED').map(a => ({ id: String(a.id), label: a.patient_name, sublabel: `${a.type} â€¢ ${a.date}` }))}
+                        conversations={(dashboardData.appointments || []).filter(a => a.status === 'SCHEDULED').map(a => ({ id: String(a.id), label: a.patient_name, sublabel: `${a.type} • ${a.date}` }))}
                         emptyMessage="No confirmed appointments yet. Confirm a patient booking to start chatting."
                     />
                 </div>
             );
             case 'slots': return <DoctorSlotsView doctorEmail={localStorage.getItem('userEmail')} />;
             case 'profile': return <DoctorProfileView />;
-            case 'earnings': return <div className="flex flex-col gap-lg"><h2 style={{ fontSize: '32px', fontWeight: '800' }}>Finances</h2><p style={{ color: 'var(--on-surface-variant)', fontSize: '18px' }}>Current daily earnings: â‚¹{dashboardData?.stats?.daily_earnings ?? 0}</p></div>;
+            case 'earnings': return <div className="flex flex-col gap-lg"><h2 style={{ fontSize: '32px', fontWeight: '800' }}>Finances</h2><p style={{ color: 'var(--on-surface-variant)', fontSize: '18px' }}>Current daily earnings: ₹{dashboardData?.stats?.daily_earnings ?? 0}</p></div>;
             default: return <DoctorOverview data={dashboardData} stats={stats} setActiveTab={setActiveTab} onAddDiet={setSelectedPatient} onPrescribe={setPrescribePatient} />;
         }
     };
