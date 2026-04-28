@@ -1094,7 +1094,7 @@ const DoctorProfileView = () => {
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '20px', marginTop: '32px' }}>
                             {[
                                 { label: 'Experience', value: profile.experience },
-                                { label: 'Rating', value: `â­ ${profile.rating}` },
+                                { label: 'Rating', value: `⭐ ${profile.rating}` },
                                 { label: 'Consultation Fee', value: `₹${profile.consultation_fee}`, highlight: true },
                             ].map(({ label, value, highlight }) => (
                                 <div key={label} style={{ padding: '20px', borderRadius: '16px', background: highlight ? 'var(--primary-container)' : 'var(--surface-high)', textAlign: 'center' }}>
