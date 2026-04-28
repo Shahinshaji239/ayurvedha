@@ -7,6 +7,8 @@ doctor_fees = [
     ('dr.meera@ayursana.com', 600),
     ('dr.rahul@ayursana.com', 550),
     ('dr.lakshmi@ayursana.com', 650),
+    ('punit@ayursana.com', 500),
+    ('syamlal@ayursana.com', 500),
 ]
 
 BASE = 'https://doctor-ayurvedha-api.onrender.com/api/doctor-profile/'

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Send, MessageCircle, Circle, Paperclip } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -38,8 +38,10 @@ const ChatPanel = ({ conversations = [], role = 'patient', emptyMessage = 'No ac
         setConnected(false);
 
         
-        const wsHost = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/^http/, 'ws').replace(/\/$/, '') : `://:8000`;
-        const url = `/ws/chat//`;
+        const wsHost = import.meta.env.VITE_API_URL 
+            ? import.meta.env.VITE_API_URL.replace(/^http/, 'ws').replace(/\/api\/?$/, '') 
+            : `ws://127.0.0.1:8000`;
+        const url = `${wsHost}/ws/chat/${activeId}/`;
         const socket = new WebSocket(url);
         socketRef.current = socket;
 

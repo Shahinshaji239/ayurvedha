@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, User, FileEdit, Video, CheckCircle2, DollarSign, Home, Users, FileText, Apple, LogOut, Plus, Search, MessageCircle, Clock, X, Info, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
@@ -652,7 +652,7 @@ const DietPlansView = ({ doctorEmail, onAddDiet, patientsList }) => {
                                     <option key={p.id} value={p.id}>{p.patient_name}</option>
                                 ))}
                             </select>
-                            <span style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'white', fontSize: '12px' }}>â–¼</span>
+                            <span style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'white', fontSize: '12px' }}>▼</span>
                         </div>
                     )}
                 </div>
@@ -752,15 +752,15 @@ const DietPlansView = ({ doctorEmail, onAddDiet, patientsList }) => {
                                                         <span style={{ fontWeight: '800', color: 'var(--primary)', fontSize: '14px' }}>Day {day.day_number}</span>
                                                         <div>
                                                             <p style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--on-surface-variant)', marginBottom: '4px' }}>Morning</p>
-                                                            <p style={{ fontSize: '13px' }}>{day.morning_meal || 'â€”'}</p>
+                                                            <p style={{ fontSize: '13px' }}>{day.morning_meal || '-'}</p>
                                                         </div>
                                                         <div>
                                                             <p style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--on-surface-variant)', marginBottom: '4px' }}>Afternoon</p>
-                                                            <p style={{ fontSize: '13px' }}>{day.afternoon_meal || 'â€”'}</p>
+                                                            <p style={{ fontSize: '13px' }}>{day.afternoon_meal || '-'}</p>
                                                         </div>
                                                         <div>
                                                             <p style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--on-surface-variant)', marginBottom: '4px' }}>Evening</p>
-                                                            <p style={{ fontSize: '13px' }}>{day.evening_meal || 'â€”'}</p>
+                                                            <p style={{ fontSize: '13px' }}>{day.evening_meal || '-'}</p>
                                                         </div>
                                                     </div>
                                                 ))}
@@ -1119,10 +1119,10 @@ const DoctorProfileView = () => {
                         </div>
                         <div>
                             <label style={{ ...labelStyle, cursor: 'pointer', padding: '10px 20px', borderRadius: '12px', background: 'var(--surface-high)', border: '1px solid var(--outline-variant)', display: 'inline-block' }}>
-                                ðŸ“· Change Photo
+                                Change Photo
                                 <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
                             </label>
-                            <p style={{ fontSize: '12px', color: 'var(--on-surface-variant)', marginTop: '6px' }}>JPG, PNG â€” max 2MB</p>
+                            <p style={{ fontSize: '12px', color: 'var(--on-surface-variant)', marginTop: '6px' }}>JPG, PNG - max 2MB</p>
                         </div>
                     </div>
 
@@ -1132,7 +1132,7 @@ const DoctorProfileView = () => {
                             { label: 'Full Name', field: 'name', type: 'text' },
                             { label: 'Specialization', field: 'specialization', type: 'text' },
                             { label: 'Years of Experience', field: 'experience', type: 'text', placeholder: 'e.g. 8 years' },
-                            { label: 'ðŸ’° Consultation Fee (₹)', field: 'consultation_fee', type: 'number', min: '0', step: '50', highlight: true },
+                            { label: 'Consultation Fee (₹)', field: 'consultation_fee', type: 'number', min: '0', step: '50', highlight: true },
                         ].map(({ label, field, type, placeholder, min, step, highlight }) => (
                             <div key={field}>
                                 <label style={labelStyle}>{label}</label>
@@ -1160,7 +1160,7 @@ const DoctorProfileView = () => {
                         </button>
                         <button type="submit" disabled={saving}
                             style={{ flex: 2, padding: '16px', borderRadius: '14px', background: 'var(--primary)', border: 'none', color: 'var(--on-primary)', fontWeight: '800', cursor: 'pointer', fontSize: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                            {saving ? 'â³ Saving...' : 'âœ… Save Changes'}
+                            {saving ? 'â³ Saving...' : 'Save Changes'}
                         </button>
                     </div>
                 </motion.form>
@@ -1183,7 +1183,7 @@ const DoctorDashboard = () => {
         const email = localStorage.getItem('userEmail');
         const role = localStorage.getItem('role');
 
-        // Guard: redirect immediately if not a doctor â€” prevents the "Access Denied" flash on reload
+        // Guard: redirect immediately if not a doctor - prevents the "Access Denied" flash on reload
         if (!email || !role) { navigate('/login'); return; }
         if (role !== 'doctor') { navigate('/dashboard'); return; }
 
